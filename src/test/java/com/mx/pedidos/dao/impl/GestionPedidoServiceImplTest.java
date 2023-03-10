@@ -4,6 +4,7 @@ import com.mx.pedidos.config.Folio;
 import com.mx.pedidos.config.SpringConfiguration;
 import com.mx.pedidos.models.request.IdPedido;
 import com.mx.pedidos.models.request.Pedido;
+import com.mx.pedidos.utils.ExceptionGenerica;
 import com.mysql.cj.conf.PropertyKey;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,24 +59,33 @@ class GestionPedidoServiceImplTest {
 
     @Test
     void testAltaPedido() throws SQLException {
-        //when(dataSource.getConnection()).thenReturn(connection);
-        //Boolean respuestaEsperada=gestionPedidoService.altaPedido(pedido);
-        //assertNotNull(respuestaEsperada);
+        ExceptionGenerica exceptionEsperada=assertThrows(ExceptionGenerica.class,()->{
+            gestionPedidoService.altaPedido(pedido);
+        });
+        assertNotNull(exceptionEsperada);
     }
 
     @Test
     void testConsultaPedido() {
+        ExceptionGenerica exceptionEsperada=assertThrows(ExceptionGenerica.class,()->{
+            gestionPedidoService.consultaPedido("PEDIDOS");
+        });
+        assertNotNull(exceptionEsperada);
     }
 
     @Test
     void testActualizarPedido() {
+        ExceptionGenerica exceptionEsperada=assertThrows(ExceptionGenerica.class,()->{
+            gestionPedidoService.actualizarPedido(pedido);
+        });
+        assertNotNull(exceptionEsperada);
     }
 
     @Test
     void testCancelarPedido() {
-    }
-
-    @Test
-    void testExistePedido() {
+        ExceptionGenerica exceptionEsperada=assertThrows(ExceptionGenerica.class,()->{
+            gestionPedidoService.cancelarPedido("PEDIDO");
+        });
+        assertNotNull(exceptionEsperada);
     }
 }
